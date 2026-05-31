@@ -1,4 +1,4 @@
-const OMBRE_API = "http://111.231.28.38:8001/api";
+const OMBRE_API = "/api/ombre";
 
 async function req<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${OMBRE_API}${path}`, {
