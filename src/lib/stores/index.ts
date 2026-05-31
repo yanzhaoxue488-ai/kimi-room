@@ -7,17 +7,14 @@
 
 import { isCanon } from "../kimi-mode";
 import { idbAdapter } from "./idb-adapter";
+import { ombreMemoryStore } from "./adapters/ombre-memory";
 import type { AdapterBundle } from "./types";
 
 // canon path placeholder · Phase 3 真 wire.
 // 现 Phase 2 即使 canon 也 fall through IDB (canon prod 没 page 调 useStore 还,
 // 所以 不影响). Phase 3 加 CanonPrismaAdapter 时 此 switch 启用.
 function selectAdapter(): AdapterBundle {
-  if (isCanon) {
-    // TODO Phase 3: return canonPrismaAdapter
-    return idbAdapter;
-  }
-  return idbAdapter;
+  return { ...idbAdapter, memory: ombreMemoryStore };
 }
 
 let _bundle: AdapterBundle | null = null;
