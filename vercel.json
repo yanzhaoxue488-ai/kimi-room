@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/ombre/:path*",
+      "destination": "http://111.231.28.38:8001/api/:path*"
+    }
+  ]
+}
