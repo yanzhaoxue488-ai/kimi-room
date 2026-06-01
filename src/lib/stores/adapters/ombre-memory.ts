@@ -1,9 +1,10 @@
+const TOKEN = process.env.NEXT_PUBLIC_OMBRE_TOKEN || "";
 const OMBRE_API = "/api/ombre";
 
 async function req<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${OMBRE_API}${path}`, {
     ...init,
-    headers: { "Content-Type": "application/json", ...init?.headers },
+    headers: { ...init?.headers, "X-Token": TOKEN },
   });
   if (res.status === 204) return undefined as T;
   if (!res.ok) {
